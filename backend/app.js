@@ -11,8 +11,8 @@ const app = express()
 
 /**
  * Middlewares
- *      express.json() - To handle (parse) the json responses 
- *      express.urlencoded({extended: true}) - To handle data coming from URL in encoded format
+ *      - express.json() - To handle (parse) the json data coming in request 
+ *      - express.urlencoded({extended: true}) - To handle data coming from URL in encoded format
  */
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
