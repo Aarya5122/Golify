@@ -20,6 +20,8 @@ exports.createTodo = async (req, res) => {
     try{
         const {title, tasks, isImportant} = req.body
 
+        console.log("Todo Object: ",title, tasks, isImportant)
+
         const todoObj = {}
 
         if(!title){
@@ -31,8 +33,11 @@ exports.createTodo = async (req, res) => {
         }
 
         Object.defineProperty(todoObj, "title", {
-            value: title
+            value: title,
+            enumerable: true 
         })
+
+        console.log(todoObj)
 
         if(tasks && !(Array.isArray(tasks))){
             throw new Error("Tasks should be a array object")
@@ -40,7 +45,8 @@ exports.createTodo = async (req, res) => {
 
         if(tasks){
             Object.defineProperty(todoObj, "tasks", {
-                value: tasks
+                value: tasks,
+                enumerable: true 
             })
         }
 
@@ -50,7 +56,8 @@ exports.createTodo = async (req, res) => {
 
         if(isImportant){
             Object.defineProperty(todoObj, "isImportant", {
-                value: isImportant
+                value: isImportant,
+                enumerable: true 
             })
         }
 
@@ -172,7 +179,8 @@ exports.editTodo = async (req, res) => {
 
         if(title){
             Object.defineProperty(todoObj, "title", {
-                value: title
+                value: title,
+                enumerable: true 
             })
         }
 
@@ -182,7 +190,8 @@ exports.editTodo = async (req, res) => {
 
         if(tasks){
             Object.defineProperty(todoObj, "tasks", {
-                value: tasks
+                value: tasks,
+                enumerable: true 
             })
         }
 
@@ -192,7 +201,8 @@ exports.editTodo = async (req, res) => {
 
         if(isImportant){
             Object.defineProperty(todoObj, "isImportant", {
-                value: isImportant
+                value: isImportant,
+                enumerable: true 
             })
         }
 
@@ -201,7 +211,7 @@ exports.editTodo = async (req, res) => {
         res.status(201).json({
             success: true,
             message: "Todo updated successfully",
-            todo
+            targetedTodo: todo
         })
     } catch(error){
         console.log("Error in edit todo controller")

@@ -28,6 +28,16 @@ app.get("/", (req, res)=>{
 })
 
 /**
+ * Importing Routes
+ */
+const todoRoutes = require("./routes/TodoRoutes")
+
+/**
+ * Allowing app (express) to access routes
+ */
+app.use("/todo", todoRoutes)
+
+/**
  * Exporting app (express setup)
  */
 module.exports = app
