@@ -5,7 +5,7 @@ const app = require("./app")
 
 /**
  * dbConnect() - Database Connection
- *      -Connecting application to datase
+ *      - Connecting application to database
  */
 const { dbConnect } = require("./config/dbConnect")
 dbConnect()
