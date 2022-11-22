@@ -1,18 +1,13 @@
-import TodoForm from "./components/TodoForm";
+import Homepage from "./pages/Homepage";
 import UpdateForm from "./pages/UpdateForm";
 
 const App = () => {
-
-  function onSubmit(event){
-    event.preventDefault();
-    console.log("Axios POST request")
-  }
-
   return(
-   <>
-    <TodoForm handleSubmit={onSubmit} buttonName="Create Todo"/>
-    <UpdateForm/>
-   </>
+    <>
+      <Homepage/>
+      <UpdateForm/>
+      <div className="mt-12"></div>
+    </>
   )
 }
 

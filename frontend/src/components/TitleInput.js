@@ -2,7 +2,7 @@ const TitleInput = () => {
     return(
         <label htmlFor="title">
             <input 
-            className="text-4xl text-violet-800 pl-2 pb-1 border-b-2 border-gray-200 focus:outline-none focus:border-b-2 focus:border-violet-500"
+            className="text-4xl text-violet-800 pl-2 pb-1 border-b-2 border-violet-300 focus:outline-none focus:border-b-2 focus:border-violet-500 placeholder-violet-500"
             type="text" 
             id="title" 
             name="title" 

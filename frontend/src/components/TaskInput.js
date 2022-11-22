@@ -26,7 +26,7 @@ const TaskInput = ({tasks, setTasks}) => {
             <div className="w-1/2 inline">
                 <label htmlFor="taskInput">
                     <input
-                    className="pb-1 pl-2 border-b-2 border-gray-200 text-lg focus:outline-none focus:border-b-2 focus:border-violet-500 w-3/4" 
+                    className="pb-1 pl-2 border-b-2 border-violet-400 text-lg focus:outline-none focus:border-violet-800 w-3/4 placeholder-violet-600" 
                     type="text" 
                     id="taskInput" 
                     name="taskInput" 
@@ -41,7 +41,7 @@ const TaskInput = ({tasks, setTasks}) => {
                 </label>
                 <button 
                 onClick={addTask}
-                className="bg-violet-500 ml-2 px-6 py-2 text-white font-medium rounded active:bg-violet-400 active:text-gray-500"
+                className="bg-violet-500 ml-2 px-5 py-2 text-white font-medium rounded active:bg-violet-400 active:text-gray-500"
                 >Add Task</button>               
             </div>
         </>

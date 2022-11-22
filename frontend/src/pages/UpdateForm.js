@@ -8,7 +8,10 @@ const UpdateForm = () => {
     }
 
     return(
-        <TodoForm handleSubmit={handleSubmit} buttonName="Update Todo"/>
+        <>
+            <h1 className="my-6 text-2xl font-bold text-violet-800 text-center">Edit your todo</h1>
+            <TodoForm handleSubmit={handleSubmit} buttonName="Update Todo"/>
+        </>
     )
 }
 
