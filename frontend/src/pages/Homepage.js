@@ -5,7 +5,7 @@ const Homepage = () => {
     return(
         <>
             <h1 className="my-6 text-2xl font-bold text-violet-800 text-center">Create New Todo</h1>
-            <TodoForm buttonName="Create Todo"/>
+            <TodoForm  task="create" buttonName="Create Todo"/>
             <h1 className="mt-12 mb-6 text-2xl font-bold text-violet-800 text-center">Your Todos!</h1>
             <TodoList/>
         </>

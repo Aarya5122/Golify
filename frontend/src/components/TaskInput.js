@@ -7,20 +7,26 @@ const TaskInput = ({tasks, setTasks}) => {
 
     function addTask(e){
         e.preventDefault()
-        console.log(e.target)
-        console.log("ADDED task")
-        // setTasks([...tasks, task])
+        setTasks([...tasks, task])
+        setTask("")
     }
 
     function handleChange(e){
         setTask(e.target.value)
     }
+    
+    console.log("task render")
 
     return(
         <>
             <div className="h-48 border rounded mb-4 py-2">
-                <div className="taskListContainer mb-6 min-h-fit max-h-44 overflow-auto flex flex-wrap">
-                    <Task/>
+                <div className="mb-6 min-h-fit max-h-44 overflow-auto flex flex-wrap">
+                    {
+                        (tasks.length === 0)?
+                        <h1 className="text-[42px] font-bold text-violet-400 pl-6">Add your tasks below</h1>
+                        :
+                        tasks.map((task, index)=>(<Task body={task} tasks={tasks} setTasks={setTasks} key={index}/>))
+                    }
                 </div>
             </div>
             <div className="w-1/2 inline">
