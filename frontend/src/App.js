@@ -1,11 +1,18 @@
 import TodoForm from "./components/TodoForm";
+import UpdateForm from "./pages/UpdateForm";
 
 const App = () => {
+
+  function onSubmit(event){
+    event.preventDefault();
+    console.log("Axios POST request")
+  }
+
   return(
-    <>
-      <h1>Homepage of Golify...</h1>
-      <TodoForm/>
-    </>
+   <>
+    <TodoForm handleSubmit={onSubmit} buttonName="Create Todo"/>
+    <UpdateForm/>
+   </>
   )
 }
 
