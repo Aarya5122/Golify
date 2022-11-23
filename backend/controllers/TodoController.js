@@ -54,7 +54,7 @@ exports.createTodo = async (req, res) => {
             throw new Error("Isimportant should have a boolean value")
         }
 
-        if(isImportant){
+        if(isImportant===true || isImportant===false){
             Object.defineProperty(todoObj, "isImportant", {
                 value: isImportant,
                 enumerable: true 
@@ -199,7 +199,7 @@ exports.editTodo = async (req, res) => {
             throw new Error("Isimportant should have a boolean value")
         }
 
-        if(isImportant){
+        if(isImportant===true||isImportant===false){
             Object.defineProperty(todoObj, "isImportant", {
                 value: isImportant,
                 enumerable: true 
