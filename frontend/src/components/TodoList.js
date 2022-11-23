@@ -19,7 +19,7 @@ const TodoList = () => {
     const getTodos = async () => {
         try{
             const response = await axios.get("/todo/getAll")
-            setTodos(response.data.todos)
+            setTodos([...response.data.todos])
         } catch(error){
             console.log("Error while fetching todos in getTodos method")
             console.log("Error: ", error)

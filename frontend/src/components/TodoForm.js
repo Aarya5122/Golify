@@ -47,12 +47,28 @@ const TodoForm = ({task, buttonName}) => {
         }
     }
 
+    const handleHighlightTodo = () => {
+        setIsImportant(!isImportant)
+    }
+
     return(
         <form className="flex flex-col" onSubmit={handleSubmit}>
             <div className="w-2/3 m-auto border rounded border-violet-400 p-4  bg-white">
                 <div className='w-full flex p-2'>
                     <div className="w-1/2">
                         <TitleInput title={title} setTitle={setTitle}/>
+                        <label htmlFor="isImportant" 
+                        className="block mt-10 text-xl text-violet-800 font-medium">
+                            <input
+                            className="p-3 -mt-1 focus:ring-0 border-2 border-violet-800 text-violet-800" 
+                            type="checkbox" 
+                            name="isImportant" 
+                            id="isImportant" 
+                            checked={isImportant}
+                            value={isImportant} 
+                            onChange={handleHighlightTodo}
+                            /> Highlight Todo
+                        </label>
                     </div>
                     <div className="w-1/2">
                        <TaskInput tasks={tasks} setTasks={setTasks}/>

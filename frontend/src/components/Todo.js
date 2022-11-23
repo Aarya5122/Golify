@@ -1,5 +1,7 @@
 import bin from "../assets/icons/delete.png"
 import edit from "../assets/icons/edit.png"
+import star from "../assets/icons/star.png"
+import starFill from "../assets/icons/star-fill.png"
 import axios from "axios"
 
 /**
@@ -23,8 +25,26 @@ const Todo = ({todo}) => {
         }
     }
 
+    const handleHightlight = async (event, todo) => {
+        try{
+            event.preventDefault()
+            let {_id, isImportant} = todo
+            isImportant = !isImportant
+            await axios.put(`/todo/${_id}`, {isImportant})
+        } catch(error){
+            console.log("Error while deleting a todo in handleDelete method")
+            console.log("Error: ", error)
+        }
+    }
+
     return(
         <div className="flex my-2 justify-center">
+            <button 
+            className="py-2 px-4 border-2 border-violet-800 rounded active:bg-violet-100 mx-3"
+            onClick={(e)=>handleHightlight(e, todo)}
+            >
+                <img src={(todo.isImportant)?starFill:star} alt="Star Todo"/>
+            </button>
             <p className="
                 w-5/6 
                 border-2 
