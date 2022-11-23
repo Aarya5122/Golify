@@ -4,19 +4,33 @@ import TitleInput from "./TitleInput"
 import TodoButton from "./TodoButton"
 import axios from "axios"
 
+/**
+ * @param  task - Denotes the purpose of the form (Create Todo / Update Todo).
+ * @returns - Form element - Which can be used to update or create a todo.
+ */
 const TodoForm = ({task, buttonName}) => {
+
+    /**
+     * title - To store the title of todo.
+     * tasks - Collection of tasks (Array).
+     * isImportant - To prioritize a todo.
+     */
 
     const [title, setTitle] = useState("")
     const [tasks, setTasks] = useState([])
     const [isImportant, setIsImportant] = useState(false)
 
+    /**
+     * handleSubmit() - Asynchronous Function
+     *                - Used to make server request based on task of the form
+     */
     const handleSubmit = async (event) => {
         try{
             event.preventDefault()
             if(task === "create"){
                 await axios.post("/todo/create", {title, tasks, isImportant})
             } else {
-                //FIXME:
+                //FIXME: handle updation request - URL Error
                 await axios.put("/todo/${id}", {title, tasks, isImportant})
             }
         } catch(error){

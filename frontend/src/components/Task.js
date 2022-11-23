@@ -1,7 +1,19 @@
 import bin from "../assets/icons/delete.png"
 
+/**
+ * 
+ * @param body - Task Body.
+ * @param tasks - Array (State).
+ * @param setTasks - function (Update State).
+ * @returns Task Element.
+ */
 const Task = ({body, tasks, setTasks}) => {
 
+    /**
+     * deleteTask() - It deletes the task from tasks array.
+     *              - Finds the task index and splices the array.
+     *              - Sets the updated array object to tasks.
+     */
     const deleteTask = () => {
         const array = tasks
         const index = array.indexOf(body)
@@ -12,7 +24,18 @@ const Task = ({body, tasks, setTasks}) => {
     return(
         <div className="inline-block m-2 flex">
             <p 
-            className="p-1 max-w-sm border border-t-violet-500 border-b-violet-500 border-l-violet-500 border-r-transparent rounded-l p-0.5 bg-violet-100">
+            className="
+                p-1 
+                max-w-sm 
+                border 
+                border-t-violet-500 
+                border-b-violet-500 
+                border-l-violet-500 
+                border-r-transparent 
+                rounded-l 
+                p-0.5 
+                bg-violet-100
+            ">
                 {(body)?body:"NJdbbd  ajsdhuiagd sadbiagd dkygdbas fdfjdbf dkj duhdygabd hgdyugfagv dagdyufvd ahdsuitagdba dhgdgavd"}
             </p>
             <button 

@@ -1,22 +1,36 @@
 import {useState} from "react"
 import Task from "./Task"
 
+/**
+ * 
+ * @param tasks - Array (State).
+ * @param setTasks - Function (Update State).
+ * @returns Task Collection and Task Input Element.
+ */
+
 const TaskInput = ({tasks, setTasks}) => {
 
+    /**
+     * Used to update the task input value when input changes.
+     */
     const [task, setTask] = useState("")
 
+    /**
+     * addTask() - Add the new task to tasks array.
+     */
     function addTask(e){
         e.preventDefault()
         setTasks([...tasks, task])
         setTask("")
     }
 
+     /**
+     * handleChange() - Updates the task value.
+     */
     function handleChange(e){
         setTask(e.target.value)
     }
     
-    console.log("task render")
-
     return(
         <>
             <div className="h-48 border rounded mb-4 py-2">
@@ -47,8 +61,17 @@ const TaskInput = ({tasks, setTasks}) => {
                 </label>
                 <button 
                 onClick={addTask}
-                className="bg-violet-500 ml-2 px-5 py-2 text-white font-medium rounded active:bg-violet-400 active:text-gray-500"
-                >Add Task</button>               
+                className="
+                    bg-violet-500 
+                    ml-2 
+                    px-5 
+                    py-2 
+                    text-white 
+                    font-medium 
+                    rounded 
+                    active:bg-violet-400 
+                    active:text-gray-500
+                ">Add Task</button>               
             </div>
         </>
     )
