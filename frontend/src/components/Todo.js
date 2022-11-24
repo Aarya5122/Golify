@@ -46,7 +46,7 @@ const Todo = ({todo}) => {
 
     return(
         <>
-            <div className="flex my-2 justify-center" onClick={()=>setPopup(!popup)}>
+            <div className="flex my-2 justify-center">
                 <button 
                 className="py-2 px-4 border-2 border-violet-800 rounded active:bg-violet-100 mx-3"
                 onClick={(e)=>handleHightlight(e, todo)}
@@ -64,7 +64,9 @@ const Todo = ({todo}) => {
                     hover:bg-violet-200 
                     text-violet-800 
                     font-medium
-                ">
+                "
+                onClick={()=>setPopup(!popup)}
+                >
                     {todo.title}</p>
                 <button className="py-2 px-4 border-2 border-blue-700 rounded active:bg-blue-200 mx-3">
                     <img src={edit} alt="Edit Todo"/>

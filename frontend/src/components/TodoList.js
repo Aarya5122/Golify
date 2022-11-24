@@ -19,7 +19,9 @@ const TodoList = () => {
     const getTodos = async () => {
         try{
             const response = await axios.get("/todo/getAll")
-            setTodos([...response.data.todos])
+            const {data} = response
+            data.todos.sort((a,b)=>b.isImportant - a.isImportant)
+            setTodos([...data.todos])
         } catch(error){
             console.log("Error while fetching todos in getTodos method")
             console.log("Error: ", error)
