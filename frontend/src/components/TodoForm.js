@@ -5,10 +5,12 @@ import TodoButton from "./TodoButton"
 import axios from "axios"
 
 /**
- * @param  task - Denotes the purpose of the form (Create Todo / Update Todo).
+ * @param  task - Denotes the purpose of the form (create Todo / update Todo).
+ * @param  buttonName - Denotes the name of submitting button (Create Todo / Update Todo).
+ * @param  todo - used to populate inital values if todo is passed.
  * @returns - Form element - Which can be used to update or create a todo.
  */
-const TodoForm = ({task, buttonName, todo=""}) => {
+const TodoForm = ({task, buttonName, todo="", makeRequest, setMakeRequest}) => {
 
     /**
      * title - To store the title of todo.
@@ -19,7 +21,6 @@ const TodoForm = ({task, buttonName, todo=""}) => {
     const [title, setTitle] = useState((!todo)?"":todo.title)
     const [tasks, setTasks] = useState((!todo)?[]:todo.tasks)
     const [isImportant, setIsImportant] = useState((!todo)?false:todo.isImportant)
-
 
     /**
      * handleSubmit() - Asynchronous Function
@@ -44,6 +45,7 @@ const TodoForm = ({task, buttonName, todo=""}) => {
             setTitle("")
             setTasks([])
             setIsImportant(false)
+            setMakeRequest(!makeRequest)
         }
     }
 

@@ -1,7 +1,13 @@
 import TodoForm from "./TodoForm"
 
-const EditTodo = ({todo, editTodo, setEditTodo}) => {
-
+/**
+ * 
+ * @param todo - Todo Object to fill initial values.
+ * @param editTodo - To make a rendering decision (State).
+ * @param setEditTodo - function (Update State).
+ * @returns Todo Updation Form with values populated.
+ */
+const EditTodo = ({todo, editTodo, setEditTodo, makeRequest, setMakeRequest}) => {
 
     if(!editTodo) return ""
     return(
@@ -19,10 +25,9 @@ const EditTodo = ({todo, editTodo, setEditTodo}) => {
                     onClick={()=>{
                         setEditTodo(false)
                         document.body.style.overflow = "auto"
-                        console.log(document.body.style.overflow)
                     }}
                     >Cancel</button>
-                <TodoForm task="update" buttonName="Update Todo" todo={todo}/>
+                <TodoForm task="update" buttonName="Update Todo" todo={todo} makeRequest={makeRequest} setMakeRequest={setMakeRequest}/>
             </div>
         </div>
     )

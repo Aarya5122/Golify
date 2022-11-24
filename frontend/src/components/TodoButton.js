@@ -19,7 +19,8 @@ const TodoButton = ({name="Todo Button"}) => {
             text-lg 
             active:bg-green-300 
             active:text-gray-600
-        ">{name}</button>
+        "
+        >{name}</button>
     )
 }
 

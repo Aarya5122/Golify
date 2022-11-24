@@ -5,7 +5,7 @@ import axios from "axios"
 /**
  * @returns Collection of todos received from server request.
  */
-const TodoList = () => {
+const TodoList = ({makeRequest, setMakeRequest}) => {
 
     /**
      * To store the todos received from a server request.
@@ -30,13 +30,16 @@ const TodoList = () => {
 
     useEffect(()=>{
         getTodos()
-    }, [])
+    }, [makeRequest])
 
     return(
-        <div className="border w-2/3 mx-auto mb-12 pr-2 pb-1 rounded">
+        <div className="border-2 w-2/3 mx-auto mb-12 pr-2 pb-1 rounded">
             {
+                (todos.length === 0)?
+                <p className="text-2xl font-semibold text-violet-800 text-center p-2">Your have no todos left...!</p>
+                :
                 todos.map((todo)=>(
-                    <Todo todo={todo} key={todo._id}/>
+                    <Todo todo={todo} key={todo._id} makeRequest={makeRequest} setMakeRequest={setMakeRequest}/>
                 ))
             }
         </div>

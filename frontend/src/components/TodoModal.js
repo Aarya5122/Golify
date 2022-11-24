@@ -1,8 +1,32 @@
-import { useState } from "react"
+import axios from "axios"
+import { useEffect, useState } from "react"
 
-const TodoModal = ({popup, todo}) => {
+/**
+ * 
+ * @param popup - To make rendering desicion (State). 
+ * @param todo - Todo object. To populate tasks. 
+ * @returns 
+ */
+const TodoModal = ({popup, todoId, makeRequest}) => {
 
-    const [validTasks] = useState([...todo.tasks])
+    /**
+     * To maintain concurrency in tasks of todo. (When we have a unsuccessful update)
+     */
+    const [tasks, setTasks] = useState([])
+
+    const getTodoTasks = async () => {
+        try {
+            const response = await axios.get(`/todo/${todoId}`)
+            setTasks([...response.data.todo.tasks])
+        } catch (error) {
+            console.log("Error in fetching todo in Todo modal");
+            console.log("Error: ", error);
+        }
+    }
+
+    useEffect(()=>{ 
+        getTodoTasks()
+    }, [makeRequest])
     
     if(!popup) return ""
     return(
@@ -23,10 +47,10 @@ const TodoModal = ({popup, todo}) => {
             mb-6    
         ">
             {
-                (validTasks.length===0)?
+                (tasks.length===0)?
                 <p>No Tasks Available</p>
                 :
-                validTasks.map((task, index)=>(
+                tasks.map((task, index)=>(
                     (task)?
                     <p className="inline-block m-1 border-2 border-violet-800 rounded p-1" key={index}>{task}</p>
                     :

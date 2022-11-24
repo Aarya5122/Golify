@@ -8,16 +8,19 @@ import TodoModal from "./TodoModal"
 import EditTodo from "./EditTodo"
 
 /**
- * @param todo - Object.
+ * @param todo - Todo Object to populate values.
  * @returns A Todo element.
  */
-const Todo = ({todo}) => {
+const Todo = ({todo, makeRequest, setMakeRequest}) => {
 
     /**
      * Used to display Todo Modal (tasks) when todo title is clicked
      */
     const [popup, setPopup] = useState(false);
 
+    /**
+     * Used to display EditForm Modal when todo edit button is clicked
+     */
     const [editTodo, setEditTodo] = useState(false);
 
     /**
@@ -29,6 +32,7 @@ const Todo = ({todo}) => {
         try{
             event.preventDefault()
             await axios.delete(`/todo/${todoId}`)
+            setMakeRequest(!makeRequest)
         } catch(error){
             console.log("Error while deleting a todo in handleDelete method")
             console.log("Error: ", error)
@@ -41,6 +45,7 @@ const Todo = ({todo}) => {
             let {_id, isImportant} = todo
             isImportant = !isImportant
             await axios.put(`/todo/${_id}`, {isImportant})
+            setMakeRequest(!makeRequest)
         } catch(error){
             console.log("Error while deleting a todo in handleDelete method")
             console.log("Error: ", error)
@@ -92,9 +97,9 @@ const Todo = ({todo}) => {
                 </button>
             </div>
 
-            <TodoModal popup={popup} todo={todo}/>
+            <TodoModal popup={popup} todoId={todo._id} makeRequest={makeRequest}/>
 
-            <EditTodo editTodo={editTodo} setEditTodo={setEditTodo} todo={todo}/>
+            <EditTodo editTodo={editTodo} setEditTodo={setEditTodo} todo={todo} makeRequest={makeRequest} setMakeRequest={setMakeRequest}/>
             
         </>
     )

@@ -34,7 +34,7 @@ const TaskInput = ({tasks, setTasks}) => {
     
     return(
         <>
-            <div className="h-48 border rounded mb-4 py-2">
+            <div className="h-48 border-2 rounded mb-4 py-2">
                 <div className="mb-6 min-h-fit max-h-44 overflow-auto flex flex-wrap">
                     {
                         (tasks.length === 0)?

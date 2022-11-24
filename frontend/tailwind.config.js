@@ -5,9 +5,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      inset: {
-        '300px': '300px',
-      }
     },
   },
   plugins: [require("@tailwindcss/forms")],
