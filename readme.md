@@ -71,7 +71,7 @@ If your webpage doesn't load hit this url in your browser: http://localhost:300
 
 ![homepage](./screenshots/Creating_Todo-2.png)
 ![homepage](./screenshots/Todos.png)
-![homepage](./screenshots/Todos_Task_View.png)
+![homepage](./screenshots/Todos_Task_view.png)
 ![homepage](./screenshots/No_Task.png)
 ![homepage](./screenshots/Update_Todo.png)
 
