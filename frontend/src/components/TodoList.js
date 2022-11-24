@@ -31,7 +31,7 @@ const TodoList = () => {
     }, [])
 
     return(
-        <div className="border w-2/3 mx-auto mb-12">
+        <div className="border w-2/3 mx-auto mb-12 pr-2 pb-1 rounded">
             {
                 todos.map((todo)=>(
                     <Todo todo={todo} key={todo._id}/>

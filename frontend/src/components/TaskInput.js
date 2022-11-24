@@ -20,6 +20,7 @@ const TaskInput = ({tasks, setTasks}) => {
      */
     function addTask(e){
         e.preventDefault()
+        if(task)
         setTasks([...tasks, task])
         setTask("")
     }
