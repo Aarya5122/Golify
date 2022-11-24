@@ -5,6 +5,7 @@ import star from "../assets/icons/star.png"
 import starFill from "../assets/icons/star-fill.png"
 import axios from "axios"
 import TodoModal from "./TodoModal"
+import EditTodo from "./EditTodo"
 
 /**
  * @param todo - Object.
@@ -16,6 +17,8 @@ const Todo = ({todo}) => {
      * Used to display Todo Modal (tasks) when todo title is clicked
      */
     const [popup, setPopup] = useState(false);
+
+    const [editTodo, setEditTodo] = useState(false);
 
     /**
      * @param todoId - ._id value of a todo .
@@ -68,7 +71,17 @@ const Todo = ({todo}) => {
                 onClick={()=>setPopup(!popup)}
                 >
                     {todo.title}</p>
-                <button className="py-2 px-4 border-2 border-blue-700 rounded active:bg-blue-200 mx-3">
+                <button 
+                className="py-2 px-4 border-2 border-blue-700 rounded active:bg-blue-200 mx-3"
+                onClick={()=>{
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth',
+                    })
+                    document.body.style.overflow = "hidden"
+                    setEditTodo(true)
+                }}
+                >
                     <img src={edit} alt="Edit Todo"/>
                 </button>
                 <button 
@@ -80,6 +93,8 @@ const Todo = ({todo}) => {
             </div>
 
             <TodoModal popup={popup} todo={todo}/>
+
+            <EditTodo editTodo={editTodo} setEditTodo={setEditTodo} todo={todo}/>
             
         </>
     )

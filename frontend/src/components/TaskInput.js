@@ -79,7 +79,7 @@ const TaskInput = ({tasks, setTasks}) => {
                 <button 
                 onClick={addTask}
                 className="
-                    bg-violet-500 
+                    bg-violet-600 
                     ml-2 
                     px-5 
                     py-2 

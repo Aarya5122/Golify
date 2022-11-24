@@ -8,7 +8,7 @@ import axios from "axios"
  * @param  task - Denotes the purpose of the form (Create Todo / Update Todo).
  * @returns - Form element - Which can be used to update or create a todo.
  */
-const TodoForm = ({task, buttonName}) => {
+const TodoForm = ({task, buttonName, todo=""}) => {
 
     /**
      * title - To store the title of todo.
@@ -16,9 +16,10 @@ const TodoForm = ({task, buttonName}) => {
      * isImportant - To prioritize a todo.
      */
 
-    const [title, setTitle] = useState("")
-    const [tasks, setTasks] = useState([])
-    const [isImportant, setIsImportant] = useState(false)
+    const [title, setTitle] = useState((!todo)?"":todo.title)
+    const [tasks, setTasks] = useState((!todo)?[]:todo.tasks)
+    const [isImportant, setIsImportant] = useState((!todo)?false:todo.isImportant)
+
 
     /**
      * handleSubmit() - Asynchronous Function
@@ -30,8 +31,7 @@ const TodoForm = ({task, buttonName}) => {
             if(task === "create"){
                 await axios.post("/todo/create", {title, tasks, isImportant})
             } else {
-                //FIXME: handle updation request - URL Error
-                await axios.put("/todo/${id}", {title, tasks, isImportant})
+                await axios.put(`/todo/${todo._id}`, {title, tasks, isImportant})
             }
         } catch(error){
             if(task === "create"){
@@ -52,8 +52,8 @@ const TodoForm = ({task, buttonName}) => {
     }
 
     return(
-        <form className="flex flex-col" onSubmit={handleSubmit}>
-            <div className="w-2/3 m-auto border rounded border-violet-400 p-4  bg-white">
+        <form className="flex flex-col w-full m-auto" onSubmit={handleSubmit} onClick={(e)=>e.stopPropagation()}>
+            <div className="border-2 rounded border-violet-600 p-4  bg-white">
                 <div className='w-full flex p-2'>
                     <div className="w-1/2">
                         <TitleInput title={title} setTitle={setTitle}/>
