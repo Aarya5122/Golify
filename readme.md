@@ -22,6 +22,8 @@ Do reach out and provide your valuable insights about the project. I appreciate 
 
 Do reach out if you have any project idea let's work together and achieve goals.
 
+## [Youtube video for running the project localhost server](https://youtu.be/a7xcoLRlwTs)
+
 ## 👨‍✈️ Architecture of project (Project Planning) 👨‍✈️
 ![architecture](./planning/plan.png)
 
