@@ -39,6 +39,7 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
         try{
             e.preventDefault()
             setSearch(search.trim())
+            if(!search) return
             const response = await axios.get("/todo/search", { params: { search: search } })
             const {data} = response
             data.todos.sort((a,b)=>b.isImportant - a.isImportant)
@@ -99,7 +100,10 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
             <div className="border-2 w-2/3 mx-auto mb-12 pr-2 pb-1 rounded">
                 {
                     (todos.length === 0)?
-                    <p className="text-2xl font-semibold text-violet-800 text-center p-2">Your have no todos left...!</p>
+                        (!closeSearch)?
+                        <p className="text-2xl font-semibold text-violet-800 text-center p-2">Your have no todos left...!</p>
+                        :
+                        <p className="text-2xl font-semibold text-violet-800 text-center p-2">No todos or tasks available with respect to your search</p>
                     :
                     todos.map((todo)=>(
                         <Todo todo={todo} key={todo._id} makeRequest={makeRequest} setMakeRequest={setMakeRequest}/>
