@@ -22,6 +22,7 @@ const App = () => {
             <li className="text-xl mr-20 font-medium"><a href="https://www.flaticon.com/authors/pixel-perfect" title="star icons">Pixel perfect</a></li>
             <li className="text-xl mr-20 font-medium"><a href="https://www.flaticon.com/authors/freepik" title="goal icons">Freepik</a></li>
             <li className="text-xl mr-20 font-medium"><a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry"> Kiranshastry </a></li>
+            <li className="text-xl mr-20 font-medium"><a href="https://www.flaticon.com/authors/catalin-fertu" title="search icons">Catalin Fertu</a></li>
           </ul>
         </nav>
       </footer>
