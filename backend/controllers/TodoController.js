@@ -260,3 +260,34 @@ exports.editTodo = async (req, res) => {
         })
     }
 }
+
+
+exports.searchTodos = async (req, res) => {
+    try{
+
+        const { search } = req.query
+
+        if(!search){
+            throw new Error("Search value  is required to fetch the todos")
+        }
+
+        if(typeof search !== "string"){
+            throw new Error("search value should be a type string")
+        }
+
+        const todos = await Todo.find({ $or: [{title: new RegExp(search, 'i')}, {tasks: new RegExp(search, 'i')}] })
+        
+        res.status(200).json({
+            success: true,
+            todos
+        })
+    } catch(error){
+        console.log("Error in search todos controller")
+        console.log("ERROR: ", error)
+        res.status(400).json({
+            success: false,
+            messageSrc: "Error in search todos controller",
+            error
+        })
+    }
+}
