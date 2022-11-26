@@ -81,6 +81,7 @@ If your webpage doesn't load hit this url in your browser: http://localhost:300
 ![task view](./screenshots/Todos_Task_view.png)
 ![no task view](./screenshots/No_Task.png)
 ![update view](./screenshots/Update_Todo.png)
+![search view](./screenshots/search.png)
 
 ## ⏳ Meta Information ⏳
 

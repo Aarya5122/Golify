@@ -14,8 +14,14 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
      */
     const [todos, setTodos] = useState([])
 
+    /**
+     * To store the search string.
+     */
     const [search, setSearch] = useState("")
 
+     /**
+     * To display cancel button after searching todo.
+     */
     const [closeSearch, setCloseSearch] = useState(false)
 
     
@@ -35,6 +41,15 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
         }
     }
 
+    /**
+     * getTodos() - Asynchronous Function
+     *            - Prevents the default action of event
+     *            - Trims the search value 
+     *            - if search value is falsy it returns without proceeding
+     *            - Fetches the todos which have title or status like the search value received.
+     *            - Sorts the todo based on priority
+     *            - Sets the closeSearch state to true stating to render the cancel button
+     */
     const handleSearch = async (e) => {
         try{
             e.preventDefault()
