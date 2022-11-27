@@ -261,7 +261,13 @@ exports.editTodo = async (req, res) => {
     }
 }
 
-
+/**
+ * searchTodos() - Asynchronous Function
+ *      - Destructures the input received in req.query.
+ *      - Validated if search is received.
+ *      - Validated if search received is of type string.
+ *      - Finds the todos and tasks which include the search value using regex and $or operation.
+ */
 exports.searchTodos = async (req, res) => {
     try{
 
