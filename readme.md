@@ -6,7 +6,7 @@ Golify is a todo application built using following technologies **_Mongo DB_**, 
 
 Users using the application can explain the todo in more descriptive way with the help of tasks. User can prioritize (highlight) the todo. This application provides the CRUD operations on todo.
 
-![New Feature](https://img.shields.io/badge/NEW-Updated-green) : **Search Feature**
+![New Feature](https://img.shields.io/badge/NEW-Updated-green) : **RESPONSIVESS**
 
 ### Icons for the project was taken from flaticons
 ### 💟 Shout out to wonderfull icons creators [freepik](https://www.flaticon.com/authors/freepik), [pixel-perfect](https://www.flaticon.com/authors/pixel-perfect), [kiranshastry](https://www.flaticon.com/authors/kiranshastry), [Catalin Fertu](https://www.flaticon.com/authors/catalin-fertu) 💟
@@ -36,9 +36,11 @@ Do reach out if you have any project idea let's work together and achieve goals.
 - View Todo
 - Delete Todo
 - Describe Steps of Action
+- Search Todo
+- Responsiveness
 
 ![New Feature](https://img.shields.io/badge/NEW-Updated-green)
-- Search Todo or Tasks  
+- Responsiveness 
 
 ## 🎯 Machine requirements to run this project 🎯
 
@@ -85,7 +87,7 @@ If your webpage doesn't load hit this url in your browser: http://localhost:300
 
 ## ⏳ Meta Information ⏳
 
-- Time taken: 5 days
-- Upcoming Future Enhancement: Mobile Resposive
+- Time taken: 7 days
+- Upcoming Future Enhancement: User Authentication
 
 ## 😄 Thanks for spending your valuable time on this project 😄

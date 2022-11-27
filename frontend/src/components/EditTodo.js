@@ -19,9 +19,9 @@ const EditTodo = ({todo, editTodo, setEditTodo, makeRequest, setMakeRequest}) =>
             document.body.style.overflow = "auto"
         }}
         >
-            <div className="w-2/3 flex flex-col m-auto relative top-1/4">
+            <div className="w-11/12 md:w-2/3 flex flex-col m-auto relative top-[60px] md:top-1/4">
                     <button 
-                    className="py-2 px-4 bg-white bg-red-600 font-bold text-xl text-white rounded"
+                    className="w-[95%] sm:w-5/6 md:w-full mx-auto py-2 px-4 bg-white bg-red-600 font-bold text-xl text-white rounded-t"
                     onClick={()=>{
                         setEditTodo(false)
                         document.body.style.overflow = "auto"

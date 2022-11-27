@@ -54,7 +54,7 @@ const TodoForm = ({task, buttonName, todo="", makeRequest, setMakeRequest}) => {
     }
 
     return(
-        <form className="flex flex-col w-[95%] sm:w-5/6 md:w-full m-auto" onSubmit={handleSubmit} onClick={(e)=>e.stopPropagation()}>
+        <form className="flex flex-col w-[95%] sm:w-5/6 md:w-full m-auto bg-white" onSubmit={handleSubmit} onClick={(e)=>e.stopPropagation()}>
             <div className="border-2 rounded border-violet-600 p-3 m-4 md:p-4 md:m-6 lg:m-0">
                 <div className='w-full flex flex-col lg:flex-row p-0 lg:p-2 mb-4 lg:mb-0'>
                     <div className="w-full lg:w-1/2">
