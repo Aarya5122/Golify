@@ -1,7 +1,4 @@
 import Homepage from "./pages/Homepage";
-import SignupPage from "./pages/SignupPage";
-import LoginPage from "./pages/LoginPage";
-// import UpdateForm from "./pages/UpdateForm";
 
 const App = () => {
   return(
@@ -16,8 +13,6 @@ const App = () => {
           </ul>
         </nav>
       </header>
-      {/* <LoginPage/> */}
-      {/* <SignupPage/> */}
       <Homepage/>
       <footer>
       <nav className="flex py-3 border-t-2 text-violet-800">

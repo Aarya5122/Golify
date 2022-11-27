@@ -8,7 +8,7 @@ const LoginPage = () => {
             md:w-3/4 
             lg:w-2/3
             xl:w-1/3
-            h-[85vh] 
+            h-[86vh] 
             m-auto 
             flex 
             flex-col 

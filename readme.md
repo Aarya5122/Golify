@@ -78,12 +78,19 @@ If your webpage doesn't load hit this url in your browser: http://localhost:300
 
 ## ❤️ Glimpse of project ❤️
 
+### Web View 🖥️
+![Login Page](./screenshots/login.png)
+![Signup Page](./screenshots/signup.png)
 ![create todo](./screenshots/Creating_Todo-2.png)
 ![todos list](./screenshots/Todos.png)
 ![task view](./screenshots/Todos_Task_view.png)
 ![no task view](./screenshots/No_Task.png)
 ![update view](./screenshots/Update_Todo.png)
 ![search view](./screenshots/search.png)
+
+### Mobile view 📱
+
+![Mobile View](./screenshots/m_full.png)
 
 ## ⏳ Meta Information ⏳
 
