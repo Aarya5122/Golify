@@ -34,11 +34,18 @@ const TaskInput = ({tasks, setTasks}) => {
     
     return(
         <>
-            <div className="h-48 border-2 rounded mb-4 py-2">
-                <div className="mb-6 min-h-fit max-h-44 overflow-auto flex flex-wrap">
+            <div className="h-24 md:h-48 border-2 rounded mb-4 py-1 md:py-2">
+                <div className="mb-6 min-h-fit max-h-20 md:max-h-44 overflow-auto flex flex-wrap">
                     {
                         (tasks.length === 0)?
-                        <h1 className="text-[42px] font-bold text-violet-400 pl-6">Add your tasks below</h1>
+                        <h1 className="  
+                            text-[24px]
+                            sm:text-[30px]
+                            md:text-[42px]
+                            font-bold
+                            text-violet-400
+                            pl-6
+                        ">Add your tasks below</h1>
                         :
                         tasks.map((task, index)=>(<Task body={task} tasks={tasks} setTasks={setTasks} key={index}/>))
                     }
@@ -57,12 +64,15 @@ const TaskInput = ({tasks, setTasks}) => {
                         border-violet-400
                         focus:border-violet-800 
                         focus:outline-none 
-                        text-lg 
-                        w-3/4 
+                        text-md
+                        md:text-lg
+                        w-full 
+                        sm:w-[70%]
+                        lg:w-[60%] 
+                        xl:w-2/3
                         placeholder-violet-600
                         focus:ring-0
                     " 
-// focus:outline-none 
 
                     type="text" 
                     id="taskInput" 
@@ -80,9 +90,13 @@ const TaskInput = ({tasks, setTasks}) => {
                 onClick={addTask}
                 className="
                     bg-violet-600 
-                    ml-2 
+                    mt-2
+                    md:mt-0
+                    sm:ml-2 
                     px-5 
-                    py-2 
+                    py-2
+                    text-md 
+                    lg:text-lg  
                     text-white 
                     font-medium 
                     rounded 

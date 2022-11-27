@@ -72,11 +72,20 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
 
     return(
         <>
-            <div className="flex items-center justify-between my-4 w-2/3 m-auto ">
+            <div 
+            className="
+                flex 
+                items-center 
+                justify-between 
+                my-4 
+                w-full
+                sm:w-2/3 
+                m-auto 
+            ">
                 {
                     (closeSearch)?
                     <button
-                    className="border border-red-700 rounded p-3"
+                    className="border border-red-700 rounded p-2 ml-3 md:p-3"
                     type="button"
                     onClick={(e)=>{
                         setCloseSearch(false)
@@ -89,7 +98,18 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
                     :
                     <div></div>
                 }
-                <div className="flex items-center w-5/12">
+                <div 
+                className="
+                    flex 
+                    items-center 
+                    w-full
+                    mx-5
+                    sm:mx-2
+                    lg:mx-3
+                    md:w-7/12
+                    lg:mx-0
+                    lg:w-5/12
+                ">
                     <input 
                     type="text" 
                     name="search" 
@@ -101,10 +121,31 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
                     }}
                     required
                     placeholder="Search for your todos / tasks"
-                    className="w-full border-r-0 border-violet-700 rounded-l text-lg placeholder-violet-700 leading-7 py-2.5 text-violet-800 font-medium outline-none focus:ring-0"
+                    className="
+                        w-full 
+                        border-r-transparent 
+                        border-violet-700 
+                        rounded-l
+                        text-sm 
+                        lg:text-lg 
+                        placeholder-violet-700 
+                        leading-4
+                        lg:leading-7 
+                        py-2 
+                        text-violet-800 
+                        font-medium 
+                        outline-none 
+                        focus:ring-0
+                    "
                     />
                     <button
-                    className="border border-violet-700 rounded-r p-3.5"
+                    className="
+                        border 
+                        border-violet-700 
+                        rounded-r
+                        p-[5.3px]
+                        lg:p-3
+                    "
                     type="button"
                     onClick={(e)=>handleSearch(e)}
                     >
@@ -112,13 +153,13 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
                     </button>
                 </div>
             </div>
-            <div className="border-2 w-2/3 mx-auto mb-12 pr-2 pb-1 rounded">
+            <div className="border-2 w-[95%] sm:w-2/3 mx-auto mb-12 pr-2 pb-1 rounded">
                 {
                     (todos.length === 0)?
                         (!closeSearch)?
                         <p className="text-2xl font-semibold text-violet-800 text-center p-2">Your have no todos left...!</p>
                         :
-                        <p className="text-2xl font-semibold text-violet-800 text-center p-2">No todos or tasks available with respect to your search</p>
+                        <p className="text-sm md:text-2xl font-semibold text-violet-800 text-center p-2">No todos or tasks available with respect to your search</p>
                     :
                     todos.map((todo)=>(
                         <Todo todo={todo} key={todo._id} makeRequest={makeRequest} setMakeRequest={setMakeRequest}/>

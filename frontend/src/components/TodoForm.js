@@ -54,15 +54,29 @@ const TodoForm = ({task, buttonName, todo="", makeRequest, setMakeRequest}) => {
     }
 
     return(
-        <form className="flex flex-col w-full m-auto" onSubmit={handleSubmit} onClick={(e)=>e.stopPropagation()}>
-            <div className="border-2 rounded border-violet-600 p-4  bg-white">
-                <div className='w-full flex p-2'>
-                    <div className="w-1/2">
+        <form className="flex flex-col w-[95%] sm:w-5/6 md:w-full m-auto" onSubmit={handleSubmit} onClick={(e)=>e.stopPropagation()}>
+            <div className="border-2 rounded border-violet-600 p-3 m-4 md:p-4 md:m-6 lg:m-0">
+                <div className='w-full flex flex-col lg:flex-row p-0 lg:p-2 mb-4 lg:mb-0'>
+                    <div className="w-full lg:w-1/2">
                         <TitleInput title={title} setTitle={setTitle}/>
                         <label htmlFor="isImportant" 
-                        className="block mt-10 text-xl text-violet-800 font-medium">
+                        className="
+                            block 
+                            mt-10
+                            text-lg 
+                            md:text-xl 
+                            text-violet-800 
+                            font-medium
+                        ">
                             <input
-                            className="p-3 -mt-1 focus:ring-0 border-2 border-violet-800 text-violet-800" 
+                            className="
+                                p-3 
+                                -mt-1 
+                                focus:ring-0 
+                                border-2 
+                                border-violet-800 
+                                text-violet-800
+                            " 
                             type="checkbox" 
                             name="isImportant" 
                             id="isImportant" 
@@ -72,7 +86,7 @@ const TodoForm = ({task, buttonName, todo="", makeRequest, setMakeRequest}) => {
                             /> Highlight Todo
                         </label>
                     </div>
-                    <div className="w-1/2">
+                    <div className="w-full lg:w-1/2 mt-6 lg:mt-0">
                        <TaskInput tasks={tasks} setTasks={setTasks}/>
                     </div>
                 </div>

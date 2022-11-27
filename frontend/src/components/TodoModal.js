@@ -36,15 +36,18 @@ const TodoModal = ({popup, todoId, makeRequest}) => {
             border-2 
             hover:border-violet-400 
             p-2 
-            rounded 
-            text-xl 
+            rounded
+            text-sm
+            sm:text-md
+            md:text-lg
+            xl:text-xl 
             text-violet-800 
             font-medium
             m-auto
-            max-h-44
+            max-h-24
+            md:max-h-44
             overflow-auto
-            mt-6
-            mb-6    
+            my-4  
         ">
             {
                 (tasks.length===0)?

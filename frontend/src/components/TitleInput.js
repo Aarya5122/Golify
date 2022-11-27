@@ -17,10 +17,13 @@ const TitleInput = ({title, setTitle}) => {
         <label htmlFor="title">
             <input 
             className="
-                text-4xl 
+                text-2xl
+                md:text-4xl 
                 h-16 
                 text-violet-800 
-                pl-2 
+                w-full 
+                lg:w-5/6
+                pl-2
                 pb-1 
                 border-t-0 
                 border-l-0 

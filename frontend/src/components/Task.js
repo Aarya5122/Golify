@@ -22,11 +22,13 @@ const Task = ({body, tasks, setTasks}) => {
     }
     
     return(
-        <div className="inline-block m-2 flex">
+        <div className="inline-block m-2 flex max-w-[91%]">
             <p 
             className="
                 p-1 
-                max-w-sm 
+                max-w-[80%]
+                md:max-w-[90%]
+                break-words
                 border 
                 border-t-violet-500 
                 border-b-violet-500 
@@ -36,7 +38,7 @@ const Task = ({body, tasks, setTasks}) => {
                 p-0.5 
                 bg-violet-100
             ">
-                {(body)?body:"NJdbbd  ajsdhuiagd sadbiagd dkygdbas fdfjdbf dkj duhdygabd hgdyugfagv dagdyufvd ahdsuitagdba dhgdgavd"}
+                {body}
             </p>
             <button 
             className="border border-red-500 rounded-r p-0.5 active:bg-red-200 pl-2 pr-1"
