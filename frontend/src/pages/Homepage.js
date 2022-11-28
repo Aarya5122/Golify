@@ -2,15 +2,20 @@ import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom"
 import TodoForm from "../components/TodoForm";
 import TodoList from "../components/TodoList";
-import account from "../config/appwriteConfig";
 import userContext from "../context/userContext";
 
 const Homepage = () => {
 
+    /**
+     * Used to make database calls only when you update, delete, create todos. It is passed as parameters to
+     * couple of components
+     */
     const [makeRequest, setMakeRequest] = useState(false)
 
+    /**
+     * Used to display homepage only if user is logged in else redirect to login page.
+     */
     const { user } = useContext(userContext)
-
 
     if(user){
  

@@ -15,6 +15,9 @@ import Footer from "./layouts/Footer"
 
 const App = () => {
 
+  /**
+   * This will used to verify if a user is logged in or not. Hence is passed to userContext as value
+   */
   const [user, setUser] = useState(null)
 
   return(

@@ -7,6 +7,10 @@ import userContext from "../context/userContext"
 
 const LoginPage = () => {
 
+     /**
+     * It is used to redirect user to homepage once the user logins into application using createEmailSession
+     * service of appwrite.
+     */
     const  {user, setUser} = useContext(userContext)
 
     /**
@@ -21,6 +25,7 @@ const LoginPage = () => {
      *      - Use appwrite createEmailSession service and pass the user email and password. If cobination
      *        is valid then it creates a session key-value pair in cookie and also store it in localstorage.
      *      - Navigate to homepage on successfull login
+     *      - We set the Logged in user to userContext
      */
     const handleLogin = async (e) => {
         e.preventDefault()

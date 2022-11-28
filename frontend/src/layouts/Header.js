@@ -5,8 +5,17 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
 
+    /**
+     * It is used to conditionally render username, logout options to user if logged in else to display
+     * login and signup.
+     */
     const { user, setUser } = useContext(userContext)
 
+    /**
+     * handleLogout() - Asynchronous Function
+     *      - Logs the user out using deleteSession service of appwrite.
+     *      - Updates the userContext to null meaning the user is logged out.
+     */
     const handleLogout = async () => {
         try {
             await account.deleteSession("current")

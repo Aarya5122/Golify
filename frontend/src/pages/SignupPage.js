@@ -8,6 +8,10 @@ import userContext from "../context/userContext"
 
 const SignupPage = () => {
 
+    /**
+     * It is used to redirect user to homepage once the user registers into application using create service 
+     * of appwrite.
+     */
     const {user, setUser} = useContext(userContext)
 
     /**
@@ -24,6 +28,7 @@ const SignupPage = () => {
      *            ID.unique() - generates unique ID's for users
      *          - On successfull registration of user. A session is created using valid email and password
      *            This session are available in cookies as a key- value pair or in localstorage by default
+     *          - We set the Registered user to userContext
      */
     const handleSignup = async (e) => {
         e.preventDefault()
