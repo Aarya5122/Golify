@@ -33,7 +33,7 @@ const TodoForm = ({task, buttonName, todo="", makeRequest, setMakeRequest}) => {
         try{
             event.preventDefault()
             if(task === "create"){
-                await axios.post(`/todo/create/${user.$id}`, {title, tasks, isImportant})
+                await axios.post(`/todo/create`, {title, tasks, isImportant, userId:user.$id})
             } else {
                 await axios.put(`/todo/${user.$id}/${todo._id}`, {title, tasks, isImportant})
             }

@@ -30,6 +30,11 @@ const TodoSchema = new Schema({
     isImportant:{
         type: Boolean,
         default: false
+    },
+    user:{
+        type: Schema.Types.ObjectId,
+        ref: "user",
+        required: [true, "User Id is required to create a todo"]
     }
 }, {
     timestamps: true

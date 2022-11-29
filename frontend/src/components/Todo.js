@@ -1,4 +1,4 @@
-import {useState} from "react"
+import {useContext, useState} from "react"
 import bin from "../assets/icons/delete.png"
 import edit from "../assets/icons/edit.png"
 import star from "../assets/icons/star.png"
@@ -6,12 +6,15 @@ import starFill from "../assets/icons/star-fill.png"
 import axios from "axios"
 import TodoModal from "./TodoModal"
 import EditTodo from "./EditTodo"
+import userContext from "../context/userContext"
 
 /**
  * @param todo - Todo Object to populate values.
  * @returns A Todo element.
  */
 const Todo = ({todo, makeRequest, setMakeRequest}) => {
+
+    const {user} = useContext(userContext)
 
     /**
      * Used to display Todo Modal (tasks) when todo title is clicked
@@ -31,7 +34,7 @@ const Todo = ({todo, makeRequest, setMakeRequest}) => {
     const handleDelete = async (event, todoId) => {
         try{
             event.preventDefault()
-            await axios.delete(`/todo/${todoId}`)
+            await axios.delete(`/todo/${user.$id}/${todoId}`)
             setMakeRequest(!makeRequest)
         } catch(error){
             console.log("Error while deleting a todo in handleDelete method")
@@ -44,7 +47,7 @@ const Todo = ({todo, makeRequest, setMakeRequest}) => {
             event.preventDefault()
             let {_id, isImportant} = todo
             isImportant = !isImportant
-            await axios.put(`/todo/${_id}`, {isImportant})
+            await axios.put(`/todo/${user.$id}/${_id}`, {isImportant})
             setMakeRequest(!makeRequest)
         } catch(error){
             console.log("Error while deleting a todo in handleDelete method")

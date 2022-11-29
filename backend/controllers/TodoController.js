@@ -22,9 +22,7 @@ const User = require("../models/UserSchema")
  */
 exports.createTodo = async (req, res) => {
     try{
-        const {title, tasks, isImportant} = req.body
-
-        const { userId } = req.params
+        const {title, tasks, isImportant, userId} = req.body
 
         const todoObj = {}
 
@@ -62,19 +60,31 @@ exports.createTodo = async (req, res) => {
                 enumerable: true 
             })
         }
+        
+        console.log(userId);
 
-        const todo = await Todo.create(todoObj)
+        if(!userId){
+            throw new Error("User Id required, Please pass User Id  to create a todo")
+        }
+
+        if(typeof userId !== "string"){
+            throw new Error("User Id should have a string value")
+        }
 
         const user = await User.find({appwriteId: userId})
 
-        console.log(user)
+        Object.defineProperty(todoObj, "user", {
+            value: user[0]._id,
+            enumerable: true 
+        })
 
-        if(!user.todos){
+        const todo = await Todo.create(todoObj)
+
+        if(!user[0].todos){
             user[0].todos = [todo._id]
         } else {
             user[0].todos.push(todo._id)
         }
-        console.log(user)
 
         const updateUser = await User.findByIdAndUpdate(user[0]._id, {
             todos: user[0].todos
@@ -177,7 +187,7 @@ exports.getTodo = async (req, res) => {
  */
 exports.editTodo = async (req, res) => {
     try{
-        const { todoId } = req.params
+        const { todoId, userId } = req.params
 
         if(!todoId){
             throw new Error("Todo ID is required to fetch the todo")
@@ -185,6 +195,14 @@ exports.editTodo = async (req, res) => {
 
         if(typeof todoId !== "string"){
             throw new Error("Todo Id should of type string")
+        }
+
+        if(!userId){
+            throw new Error("User ID is required to update the todo")
+        }
+
+        if(typeof userId !== "string"){
+            throw new Error("User ID should of type string")
         }
 
         const {title, tasks, isImportant} = req.body
@@ -224,12 +242,20 @@ exports.editTodo = async (req, res) => {
             })
         }
 
-        const todo = await Todo.findByIdAndUpdate(todoId, todoObj)
+        const todo = await Todo.findById(todoId.trim())
+
+        const user = await Todo.find({appwriteId: userId.trim()})
+
+        if(todo.user === user[0]._id){
+            throw new Error("User is not the owner of todo")
+        }
+
+        const updatedTodo = await Todo.findByIdAndUpdate(todo._id, todoObj)
 
         res.status(201).json({
             success: true,
             message: "Todo updated successfully",
-            targetedTodo: todo
+            targetedTodo: updatedTodo
         })
     } catch(error){
         console.log("Error in edit todo controller")
@@ -251,7 +277,15 @@ exports.editTodo = async (req, res) => {
  */
  exports.deleteTodo = async (req, res) => {
     try{
-        const { todoId } = req.params
+        const { userId, todoId } = req.params
+
+        if(!userId){
+            throw new Error("User ID is required to delete the todo")
+        }
+
+        if(typeof userId !== "string"){
+            throw new Error("User Id should of type string")
+        }
 
         if(!todoId){
             throw new Error("Todo ID is required to fetch the todo")
@@ -262,6 +296,12 @@ exports.editTodo = async (req, res) => {
         }
 
         const todo = await Todo.findByIdAndDelete(todoId)
+
+        const user = await User.find({appwriteId: userId})
+
+        user[0].todos = user[0].todos.filter((todoObj)=>(todoObj.equals(todo._id)===false))
+
+        await User.findByIdAndUpdate(user[0]._id, {todos: user[0].todos})
 
         res.status(200).json({
             success: true,
@@ -289,7 +329,15 @@ exports.editTodo = async (req, res) => {
 exports.searchTodos = async (req, res) => {
     try{
 
-        const { search } = req.query
+        const { search, userId } = req.query
+
+        if(!userId){
+            throw new Error("User Id value  is required to fetch the todos")
+        }
+
+        if(typeof userId !== "string"){
+            throw new Error("User Id value should be a type string")
+        }
 
         if(!search){
             throw new Error("Search value  is required to fetch the todos")
@@ -299,11 +347,14 @@ exports.searchTodos = async (req, res) => {
             throw new Error("search value should be a type string")
         }
 
+        const user = await User.find({appwriteId: userId});
         const todos = await Todo.find({ $or: [{title: new RegExp(search, 'i')}, {tasks: new RegExp(search, 'i')}] })
-        
+        const filteredTodos = todos.filter((todo)=>todo.user.equals(user[0]._id))
+        console.log("FILTERED");
+        console.log(filteredTodos)
         res.status(200).json({
             success: true,
-            todos
+            filteredTodos   
         })
     } catch(error){
         console.log("Error in search todos controller")

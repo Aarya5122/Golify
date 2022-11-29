@@ -34,11 +34,11 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
      */
      const getTodos = async () => {
         try{
-            console.log(user.$id)
-            const response = await axios.get("http://localhost:4000/user/todos", {params:{userId: user.$id}})
+            const response = await axios.get("/user/todos", {params:{userId: user.$id}})
             const {data} = response
             data.user[0].todos.sort((a,b)=>b.isImportant - a.isImportant)
             setTodos([...data.user[0].todos])
+
 
         }catch(error){
             console.log("Error while fetching todos in getTodos method")
@@ -60,10 +60,11 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
             e.preventDefault()
             setSearch(search.trim())
             if(!search) return
-            const response = await axios.get("/todo/search", { params: { search: search } })
+            const response = await axios.get("http://localhost:4000/todo/search", {params:{search ,userId: user.$id}})
+            console.log(response);
             const {data} = response
-            data.todos.sort((a,b)=>b.isImportant - a.isImportant)
-            setTodos([...data.todos])
+            data.filteredTodos.sort((a,b)=>b.isImportant - a.isImportant)
+            setTodos([...data.filteredTodos])
             setCloseSearch(true)
         }catch(error){
             console.log("Error while fetching search todos in getTodos method")

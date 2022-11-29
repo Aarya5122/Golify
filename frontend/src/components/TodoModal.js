@@ -1,5 +1,6 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import userContext from "../context/userContext"
 
 /**
  * 
@@ -9,6 +10,8 @@ import { useEffect, useState } from "react"
  */
 const TodoModal = ({popup, todoId, makeRequest}) => {
 
+    const {user} = useContext(userContext)
+
     /**
      * To maintain concurrency in tasks of todo. (When we have a unsuccessful update)
      */
@@ -16,7 +19,8 @@ const TodoModal = ({popup, todoId, makeRequest}) => {
 
     const getTodoTasks = async () => {
         try {
-            const response = await axios.get(`/todo/${todoId}`)
+            const response = await axios.get(`/todo/${user.$id}/${todoId}`)
+            if(response.data.todo.tasks)
             setTasks([...response.data.todo.tasks])
         } catch (error) {
             console.log("Error in fetching todo in Todo modal");
