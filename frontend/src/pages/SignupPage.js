@@ -5,6 +5,7 @@ import account from "../config/appwriteConfig"
 import { ID } from "appwrite"
 import  { Navigate } from "react-router-dom"
 import userContext from "../context/userContext"
+import axios from "axios"
 
 const SignupPage = () => {
 
@@ -20,6 +21,7 @@ const SignupPage = () => {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [profession, setProfession] = useState("")
 
     /**
      * handleSignup(e) - Asynchronous Function
@@ -33,13 +35,22 @@ const SignupPage = () => {
     const handleSignup = async (e) => {
         e.preventDefault()
         try{
-            await account.create(
+            const appwriteUser = await account.create(
                 ID.unique(),
                 email,
                 password,
                 name 
             )
-            console.log("USER CREATED SUCCESSFULLY")
+            console.log("USER CREATED SUCCESSFULLY IN APPWRITE")
+            await axios.post("/user/create",
+                {
+                    name: appwriteUser.name,
+                    email: appwriteUser.email,
+                    appwriteId: appwriteUser.$id,
+                    profession
+                }
+            )
+            console.log("USER CREATED SUCCESSFULLY IN DB")
             await account.createEmailSession(email, password)
             console.log("USER LOGGEDIN SUCCESSFULLY")
             setUser(await account.get())
@@ -144,7 +155,7 @@ const SignupPage = () => {
                     value={password}
                     onChange={(e)=>handleChange(e, setPassword)} />
 
-                    {/* <input
+                    <input
                     className="
                         w-full
                         rounded
@@ -160,7 +171,9 @@ const SignupPage = () => {
                     placeholder="Profession"
                     type="text"
                     name="profession"
-                    id="profession" /> */}
+                    id="profession" 
+                    value={profession}
+                    onChange={(e)=>handleChange(e, setProfession)}/>
 
                     
                         <TodoButton name="Signup"/>

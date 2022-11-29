@@ -1,8 +1,9 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import TaskInput from "./TaskInput"
 import TitleInput from "./TitleInput"
 import TodoButton from "./TodoButton"
 import axios from "axios"
+import userContext from "../context/userContext"
 
 /**
  * @param  task - Denotes the purpose of the form (create Todo / update Todo).
@@ -11,6 +12,8 @@ import axios from "axios"
  * @returns - Form element - Which can be used to update or create a todo.
  */
 const TodoForm = ({task, buttonName, todo="", makeRequest, setMakeRequest}) => {
+
+    const {user} = useContext(userContext)
 
     /**
      * title - To store the title of todo.
@@ -30,9 +33,9 @@ const TodoForm = ({task, buttonName, todo="", makeRequest, setMakeRequest}) => {
         try{
             event.preventDefault()
             if(task === "create"){
-                await axios.post("/todo/create", {title, tasks, isImportant})
+                await axios.post(`/todo/create/${user.$id}`, {title, tasks, isImportant})
             } else {
-                await axios.put(`/todo/${todo._id}`, {title, tasks, isImportant})
+                await axios.put(`/todo/${user.$id}/${todo._id}`, {title, tasks, isImportant})
             }
         } catch(error){
             if(task === "create"){

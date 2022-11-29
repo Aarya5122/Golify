@@ -31,7 +31,9 @@ const TodoSchema = new Schema({
         type: Boolean,
         default: false
     }
-})
+}, {
+    timestamps: true
+ })
 
 /**
  * Exporting model

@@ -8,6 +8,7 @@ require("dotenv").config()
  */
 const express = require("express")
 const app = express()
+const cors = require("cors")
 
 /**
  * Middlewares
@@ -16,6 +17,7 @@ const app = express()
  */
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+app.use(cors())
 
 /**
  * Home route for testing purpose
@@ -31,11 +33,13 @@ app.get("/", (req, res)=>{
  * Importing Routes
  */
 const todoRoutes = require("./routes/TodoRoutes")
+const userRoutes = require("./routes/UserRoutes")
 
 /**
  * Allowing app (express) to access routes
  */
 app.use("/todo", todoRoutes)
+app.use("/user", userRoutes)
 
 /**
  * Exporting app (express setup)

@@ -1,13 +1,16 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import Todo from "./Todo"
 import axios from "axios"
 import searchIcon from "../assets/icons/search.png"
 import closeIcon from "../assets/icons/close.png"
+import userContext from "../context/userContext"
 
 /**
  * @returns Collection of todos received from server request.
  */
 const TodoList = ({makeRequest, setMakeRequest}) => {
+
+    const {user} = useContext(userContext)
 
     /**
      * To store the todos received from a server request.
@@ -29,20 +32,22 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
      * getTodos() - Asynchronous Function
      *            - Fetches all the todos stored in database by making a server request.
      */
-    const getTodos = async () => {
+     const getTodos = async () => {
         try{
-            const response = await axios.get("/todo/getAll")
+            console.log(user.$id)
+            const response = await axios.get("http://localhost:4000/user/todos", {params:{userId: user.$id}})
             const {data} = response
-            data.todos.sort((a,b)=>b.isImportant - a.isImportant)
-            setTodos([...data.todos])
-        } catch(error){
+            data.user[0].todos.sort((a,b)=>b.isImportant - a.isImportant)
+            setTodos([...data.user[0].todos])
+
+        }catch(error){
             console.log("Error while fetching todos in getTodos method")
             console.log("Error: ", error)
-        }
+        }     
     }
 
     /**
-     * getTodos() - Asynchronous Function
+     * handleSearch() - Asynchronous Function
      *            - Prevents the default action of event
      *            - Trims the search value 
      *            - if search value is falsy it returns without proceeding

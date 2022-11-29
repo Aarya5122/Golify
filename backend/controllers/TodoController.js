@@ -2,10 +2,12 @@
  * Importing the todo model to perform CRUD operations
  */
 const Todo = require("../models/TodoSchema")
+const User = require("../models/UserSchema")
 
 /**
  * createTodo() - Asynchronous Function
  *      - Destructures the input received in req.body.
+ *      - Destructures the userid received in req.params.
  *      - Create a todoObj object.
  *      - Validated if title is received.
  *      - Validated if title received is of type string.
@@ -15,12 +17,14 @@ const Todo = require("../models/TodoSchema")
  *      - Validated if isImportant is of type boolean.
  *      - If isImportant is valid define it in todoObj.
  *      - Creates a new document from the validated data. (Asynchronous operation - create())
+ *      - Find the user in DB using appwriteId
+ *      - Update user todos using the user._id.
  */
 exports.createTodo = async (req, res) => {
     try{
         const {title, tasks, isImportant} = req.body
 
-        console.log("Todo Object: ",title, tasks, isImportant)
+        const { userId } = req.params
 
         const todoObj = {}
 
@@ -36,8 +40,6 @@ exports.createTodo = async (req, res) => {
             value: title,
             enumerable: true 
         })
-
-        console.log(todoObj)
 
         if(tasks && !(Array.isArray(tasks))){
             throw new Error("Tasks should be a array object")
@@ -63,10 +65,26 @@ exports.createTodo = async (req, res) => {
 
         const todo = await Todo.create(todoObj)
 
+        const user = await User.find({appwriteId: userId})
+
+        console.log(user)
+
+        if(!user.todos){
+            user[0].todos = [todo._id]
+        } else {
+            user[0].todos.push(todo._id)
+        }
+        console.log(user)
+
+        const updateUser = await User.findByIdAndUpdate(user[0]._id, {
+            todos: user[0].todos
+        })
+
         res.status(201).json({
             success: true,
             message: "Todo created successfully",
-            todo
+            todo,
+            updateUser
         })
     } catch(error){
         console.log("Error in create todo controller")

@@ -12,7 +12,7 @@ const { createTodo, getTodos, editTodo, getTodo, deleteTodo, searchTodos } = req
 /**
  * "/create" - route is used to create a todo. It uses post method.
  */
-router.route("/create").post(createTodo)
+router.route("/create/:userId").post(createTodo)
 
 /**
  * "/getALl" - route is used to fetch all todos. It uses get method.
