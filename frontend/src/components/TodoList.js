@@ -10,6 +10,7 @@ import userContext from "../context/userContext"
  */
 const TodoList = ({makeRequest, setMakeRequest}) => {
 
+
     const {user} = useContext(userContext)
 
     /**
@@ -36,10 +37,8 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
         try{
             const response = await axios.get("/user/todos", {params:{userId: user.$id}})
             const {data} = response
-            data.user[0].todos.sort((a,b)=>b.isImportant - a.isImportant)
-            setTodos([...data.user[0].todos])
-
-
+            data.user.todos.sort((a,b)=>b.isImportant - a.isImportant)
+            setTodos([...data.user.todos])
         }catch(error){
             console.log("Error while fetching todos in getTodos method")
             console.log("Error: ", error)
@@ -61,10 +60,9 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
             setSearch(search.trim())
             if(!search) return
             const response = await axios.get("http://localhost:4000/todo/search", {params:{search ,userId: user.$id}})
-            console.log(response);
             const {data} = response
-            data.filteredTodos.sort((a,b)=>b.isImportant - a.isImportant)
-            setTodos([...data.filteredTodos])
+            data.todos.sort((a,b)=>b.isImportant - a.isImportant)
+            setTodos([...data.todos])
             setCloseSearch(true)
         }catch(error){
             console.log("Error while fetching search todos in getTodos method")

@@ -8,12 +8,17 @@ require("dotenv").config()
  */
 const express = require("express")
 const app = express()
+
+/**
+ * Importing cors package.
+ */
 const cors = require("cors")
 
 /**
  * Middlewares
  *      - express.json() - To handle (parse) the json data coming in request 
  *      - express.urlencoded({extended: true}) - To handle data coming from URL in encoded format
+ *      - cors - To handle cross origin requests
  */
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))

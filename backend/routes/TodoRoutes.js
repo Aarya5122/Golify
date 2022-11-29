@@ -15,14 +15,17 @@ const { createTodo, getTodos, editTodo, getTodo, deleteTodo, searchTodos } = req
 router.route("/create").post(createTodo)
 
 /**
- * "/getALl" - route is used to fetch all todos. It uses get method.
+ * "/getALl" - route is used to fetch all todos. It uses get method. - ADMIN ROUTE
  */
 router.route("/getAll").get(getTodos)
 
+/**
+ * "/search" - route is used to fetch todos or tasks of owner which matches the search value. It uses get method.
+ */
 router.route("/search").get(searchTodos)
 
 /**
- * "/:todoId" - route expects a parameter which will be used to fetch, update and delete todo on same route.
+ * ":userId/:todoId" - route expects a parameter which will be used to fetch, update and delete todo on same route.
  *            - uses get() to fetch todo
  *            - uses put() to update todo
  *            - uses delete() to delete todo

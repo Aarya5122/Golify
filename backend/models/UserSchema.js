@@ -12,7 +12,7 @@
  
  /**
   * UserSchema - Creating a schema for Todo
-  *     - role: Striing value, By default holds user.
+  *     - role: String value, By default holds user as value.
   *      - name: String value, Its required field, Can have maximum 50 charecters.
   *      - email: String value, Its required field, Should be unique (Creates a unique index).
   *      - profession: String value. 
