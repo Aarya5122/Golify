@@ -1,12 +1,20 @@
 import {useContext, useState} from "react"
+
+// axios
+import axios from "axios"
+
+// context
+import userContext from "../context/userContext"
+
+// images
 import bin from "../assets/icons/delete.png"
 import edit from "../assets/icons/edit.png"
 import star from "../assets/icons/star.png"
 import starFill from "../assets/icons/star-fill.png"
-import axios from "axios"
+
+//components
 import TodoModal from "./TodoModal"
 import EditTodo from "./EditTodo"
-import userContext from "../context/userContext"
 
 /**
  * @param todo - Todo Object to populate values.
@@ -14,7 +22,9 @@ import userContext from "../context/userContext"
  */
 const Todo = ({todo, makeRequest, setMakeRequest}) => {
 
-
+    /**
+     * It is used to pass appwrite Id in DB request parmas
+     */
     const {user} = useContext(userContext)
 
     /**
@@ -30,7 +40,8 @@ const Todo = ({todo, makeRequest, setMakeRequest}) => {
     /**
      * @param todoId - ._id value of a todo .
      * handleDelete() - Asynchronous Function (Server Request).
-     *                - Deletes todo based in database based on id value of todo.
+     *                - Deletes user's todo stored in database based on id value of todo.
+     *                - Updates makeRequest state
      */
     const handleDelete = async (event, todoId) => {
         try{
@@ -43,6 +54,14 @@ const Todo = ({todo, makeRequest, setMakeRequest}) => {
         }
     }
 
+    /**
+     * @param todo - stores todo object which has to update its isImportant field
+     * handleHighlight() - Prevent default behaviour of form submission (reloading).
+     *                   - Destructure id and isImportant field from todo
+     *                   - Inverse the value of isImportant
+     *                   - Make PUT request to database to update todo value.
+     *                   - Updates makeRequest state
+     */
     const handleHightlight = async (event, todo) => {
         try{
             event.preventDefault()

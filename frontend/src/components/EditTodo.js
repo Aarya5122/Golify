@@ -1,3 +1,4 @@
+// components
 import TodoForm from "./TodoForm"
 
 /**
@@ -8,7 +9,6 @@ import TodoForm from "./TodoForm"
  * @returns Todo Updation Form with values populated.
  */
 const EditTodo = ({todo, editTodo, setEditTodo, makeRequest, setMakeRequest}) => {
-
 
     if(!editTodo) return ""
     return(

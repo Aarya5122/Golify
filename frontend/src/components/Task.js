@@ -1,10 +1,11 @@
+// images
 import bin from "../assets/icons/delete.png"
 
 /**
  * 
  * @param body - Task Body.
  * @param tasks - Array (State).
- * @param setTasks - function (Update State).
+ * @param setTasks - function (Update State). To handle delete task operation
  * @returns Task Element.
  */
 const Task = ({body, tasks, setTasks}) => {

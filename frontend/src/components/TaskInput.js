@@ -1,10 +1,12 @@
 import {useState} from "react"
+
+// components
 import Task from "./Task"
 
 /**
  * 
  * @param tasks - Array (State).
- * @param setTasks - Function (Update State).
+ * @param setTasks - Function (Update State).  To handle add task operation
  * @returns Task Collection and Task Input Element.
  */
 

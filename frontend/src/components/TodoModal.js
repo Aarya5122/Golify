@@ -1,5 +1,9 @@
-import axios from "axios"
 import { useContext, useEffect, useState } from "react"
+
+// axios
+import axios from "axios"
+
+// context
 import userContext from "../context/userContext"
 
 /**
@@ -10,6 +14,9 @@ import userContext from "../context/userContext"
  */
 const TodoModal = ({popup, todoId, makeRequest}) => {
 
+    /**
+     * It is used to pass appwrite Id in DB request parmas
+     */
     const {user} = useContext(userContext)
 
     /**
@@ -17,6 +24,10 @@ const TodoModal = ({popup, todoId, makeRequest}) => {
      */
     const [tasks, setTasks] = useState([])
 
+    /**
+     * getTodoTasks() - Asynchronous Function
+     *      - Fetches the tasks of user's todo
+     */
     const getTodoTasks = async () => {
         try {
             const response = await axios.get(`/todo/${user.$id}/${todoId}`)
@@ -28,10 +39,14 @@ const TodoModal = ({popup, todoId, makeRequest}) => {
         }
     }
 
+    
     useEffect(()=>{ 
         getTodoTasks()
     }, [makeRequest])
     
+    /**
+     * Conditional rendering: Check if param pop is true and display tasks else display "".
+     */
     if(!popup) return ""
     return(
         <div

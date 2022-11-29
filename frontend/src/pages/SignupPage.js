@@ -1,11 +1,24 @@
-import TodoButton from "../components/TodoButton"
-import logo from "../assets/logo.png"
 import { useContext, useState } from "react"
+
+// appwrite
 import account from "../config/appwriteConfig"
 import { ID } from "appwrite"
-import  { Navigate } from "react-router-dom"
-import userContext from "../context/userContext"
+
+// axios
 import axios from "axios"
+
+// images
+import logo from "../assets/logo.png"
+
+// context
+import userContext from "../context/userContext"
+
+// router
+import  { Navigate } from "react-router-dom"
+
+// componetns
+import TodoButton from "../components/TodoButton"
+
 
 const SignupPage = () => {
 

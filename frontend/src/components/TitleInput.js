@@ -1,6 +1,6 @@
 /**
  * @param title - String (State).
- * @param setTitle - Function (Update State).
+ * @param setTitle - Function (Update State).To update title value of todo
  * @returns Title Input Element.
  */
 

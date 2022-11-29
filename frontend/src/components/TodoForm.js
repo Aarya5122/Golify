@@ -1,19 +1,28 @@
 import { useContext, useState } from "react"
+
+// axios
+import axios from "axios"
+
+// context
+import userContext from "../context/userContext"
+
+// components
 import TaskInput from "./TaskInput"
 import TitleInput from "./TitleInput"
 import TodoButton from "./TodoButton"
-import axios from "axios"
-import userContext from "../context/userContext"
 
 /**
  * @param  task - Denotes the purpose of the form (create Todo / update Todo).
  * @param  buttonName - Denotes the name of submitting button (Create Todo / Update Todo).
  * @param  todo - used to populate inital values if todo is passed.
+ * @param  setMakeRequest - To make DB call and populate todos in todoList once form is submitted.
  * @returns - Form element - Which can be used to update or create a todo.
  */
 const TodoForm = ({task, buttonName, todo="", makeRequest, setMakeRequest}) => {
 
-
+    /**
+     * It is used to pass appwrite Id in DB request parmas
+     */
     const {user} = useContext(userContext)
 
     /**
@@ -29,6 +38,7 @@ const TodoForm = ({task, buttonName, todo="", makeRequest, setMakeRequest}) => {
     /**
      * handleSubmit() - Asynchronous Function
      *                - Used to make server request based on task of the form
+     *                - Finally resets the values of all the inputfield and updates makeRequest state
      */
     const handleSubmit = async (event) => {
         try{
@@ -53,6 +63,9 @@ const TodoForm = ({task, buttonName, todo="", makeRequest, setMakeRequest}) => {
         }
     }
 
+    /**
+     * Inverses the value of isImportant State
+     */
     const handleHighlightTodo = () => {
         setIsImportant(!isImportant)
     }

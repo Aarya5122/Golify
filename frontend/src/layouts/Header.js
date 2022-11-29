@@ -1,6 +1,12 @@
 import { useContext } from "react"
+
+// appwrite
 import account from "../config/appwriteConfig"
+
+// context
 import userContext from "../context/userContext"
+
+// router
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -8,6 +14,7 @@ const Header = () => {
     /**
      * It is used to conditionally render username, logout options to user if logged in else to display
      * login and signup.
+     * It is also set to null if user logs out.
      */
     const { user, setUser } = useContext(userContext)
 

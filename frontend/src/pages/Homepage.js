@@ -1,8 +1,14 @@
 import { useContext, useState } from "react";
+
+// router
 import { Navigate } from "react-router-dom"
+
+// context
+import userContext from "../context/userContext";
+
+// components
 import TodoForm from "../components/TodoForm";
 import TodoList from "../components/TodoList";
-import userContext from "../context/userContext";
 
 const Homepage = () => {
 
@@ -16,8 +22,6 @@ const Homepage = () => {
      * Used to display homepage only if user is logged in else redirect to login page.
      */
     const { user } = useContext(userContext)
-
-
 
     if(user){
  

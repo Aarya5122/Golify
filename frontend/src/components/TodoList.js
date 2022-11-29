@@ -1,16 +1,27 @@
 import { useState, useEffect, useContext } from "react"
-import Todo from "./Todo"
+
+// axios
 import axios from "axios"
-import searchIcon from "../assets/icons/search.png"
-import closeIcon from "../assets/icons/close.png"
+
+// context
 import userContext from "../context/userContext"
 
+// images
+import searchIcon from "../assets/icons/search.png"
+import closeIcon from "../assets/icons/close.png"
+
+// components
+import Todo from "./Todo"
+
 /**
+ * @param setMakeRequest - To make DB call and populate todos in todoList. When we delete, update todo.
  * @returns Collection of todos received from server request.
  */
 const TodoList = ({makeRequest, setMakeRequest}) => {
 
-
+    /**
+     * It is used to pass appwrite Id in DB request parmas
+     */
     const {user} = useContext(userContext)
 
     /**
@@ -31,7 +42,7 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
     
     /**
      * getTodos() - Asynchronous Function
-     *            - Fetches all the todos stored in database by making a server request.
+     *            - Fetches all the user's todos stored in database by making a server request.
      */
      const getTodos = async () => {
         try{
@@ -50,7 +61,7 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
      *            - Prevents the default action of event
      *            - Trims the search value 
      *            - if search value is falsy it returns without proceeding
-     *            - Fetches the todos which have title or status like the search value received.
+     *            - Fetches the user todos which have title or tasks like the search value passed .
      *            - Sorts the todo based on priority
      *            - Sets the closeSearch state to true stating to render the cancel button
      */

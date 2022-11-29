@@ -1,9 +1,19 @@
 import { useState, useContext } from "react"
-import TodoButton from "../components/TodoButton"
-import logo from "../assets/logo.png"
+
+// appwrite
 import account from "../config/appwriteConfig"
-import { Navigate } from "react-router-dom"
+
+// context
 import userContext from "../context/userContext"
+
+// images
+import logo from "../assets/logo.png"
+
+// router
+import { Navigate } from "react-router-dom"
+
+// components
+import TodoButton from "../components/TodoButton"
 
 const LoginPage = () => {
 
