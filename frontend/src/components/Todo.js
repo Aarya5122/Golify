@@ -131,7 +131,7 @@ const Todo = ({todo, makeRequest, setMakeRequest}) => {
                 </button>
             </div>
 
-            <TodoModal popup={popup} todoId={todo._id} makeRequest={makeRequest}/>
+            <TodoModal popup={popup} todoId={todo._id} makeRequest={makeRequest} created={todo.createdAt} updated={todo.updatedAt}/>
 
             <EditTodo editTodo={editTodo} setEditTodo={setEditTodo} todo={todo} makeRequest={makeRequest} setMakeRequest={setMakeRequest}/>
             

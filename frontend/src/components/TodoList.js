@@ -39,6 +39,8 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
      */
     const [closeSearch, setCloseSearch] = useState(false)
 
+
+
     
     /**
      * getTodos() - Asynchronous Function
@@ -81,8 +83,35 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
         }     
     }
 
+    /**
+     *  @param - sort: takes the string value to know what parameter to sort.
+     * handleSort() - Asynchronous Function
+     *            - Store todos in a variable sortTodos .
+     *            - Validate if sort is createdAt or title. If so sort it in ascending order.
+     *            - Validate if sort is updatedAt or isImportant. If so sort it in descending order.
+     *            - Sets the todos state with sortTodos values.
+     */
+    const handleSort = (sort) => {
+        const sortTodos = todos
+        if(sort !== "isImportant" && sort !=="updatedAt"){
+            sortTodos.sort((a,b)=>{
+                if(a[sort]>b[sort]) return 1
+                if(a[sort]<b[sort]) return -1
+                return 0
+            })
+        } else {
+            sortTodos.sort((a,b)=>{
+                if(a[sort]>b[sort]) return -1
+                if(a[sort]<b[sort]) return 1
+                return 0
+            })
+        }
+        setTodos([...sortTodos])
+    }
+
     useEffect(()=>{
         getTodos()
+        setCloseSearch(false)
     }, [makeRequest])
 
     return(
@@ -113,6 +142,23 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
                     :
                     <div></div>
                 }
+                <div>
+                    <label htmlFor="sort">
+                        <span className="text-lg font-medium text-violet-800">Sort by: </span>
+                        <select defaultValue="isImportant" 
+                        onChange={(event)=>{
+                            handleSort(event.target.value)
+
+                        }}
+                        className="border-violet-500 rounded text-violet-800 font-semibold"
+                        >
+                            <option value="isImportant">Priority</option>
+                            <option value="createdAt">Created Date</option>
+                            <option value="updatedAt">Updated Date</option>
+                            <option value="title">Alphabetical</option>
+                        </select>
+                    </label>
+                </div>
                 <div 
                 className="
                     flex 
