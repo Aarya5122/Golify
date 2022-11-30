@@ -217,6 +217,8 @@ exports.getTodo = async (req, res) => {
  *      - If tasks is valid update in todo fetched.
  *      - Validated if isImportant is received and is of type boolean.
  *      - If isImportant is valid update in todo fetched.
+ *      - Validated if isCompleted is received and is of type boolean.
+ *      - If isCompleted is valid update in todo fetched.
  *      - Save the changes made to todo - (Asynchronous operation - save())
  */
 exports.editTodo = async (req, res) => {
@@ -255,7 +257,7 @@ exports.editTodo = async (req, res) => {
             throw new Error("User is not the owner of todo")
         }
 
-        const {title, tasks, isImportant} = req.body
+        const {title, tasks, isImportant, isCompleted} = req.body
 
         if(title && typeof title !== "string"){
             throw new Error("Iitle should have a string value")
@@ -279,6 +281,14 @@ exports.editTodo = async (req, res) => {
 
         if(isImportant===true||isImportant===false){
            todo.isImportant = isImportant
+        }
+
+        if(isCompleted && typeof isCompleted !== "boolean"){
+            throw new Error("Isimportant should have a boolean value")
+        }
+
+        if(isCompleted===true||isCompleted===false){
+           todo.isCompleted = isCompleted
         }
 
         await todo.save()

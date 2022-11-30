@@ -93,7 +93,7 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
      */
     const handleSort = (sort) => {
         const sortTodos = todos
-        if(sort !== "isImportant" && sort !=="updatedAt"){
+        if(sort !== "isImportant" && sort !=="updatedAt" && sort !=="isCompleted"){
             sortTodos.sort((a,b)=>{
                 if(a[sort]>b[sort]) return 1
                 if(a[sort]<b[sort]) return -1
@@ -153,6 +153,7 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
                         className="border-violet-500 rounded text-violet-800 font-semibold"
                         >
                             <option value="isImportant">Priority</option>
+                            <option value="isCompleted">Completed</option>
                             <option value="createdAt">Created Date</option>
                             <option value="updatedAt">Updated Date</option>
                             <option value="title">Alphabetical</option>

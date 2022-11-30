@@ -31,6 +31,10 @@ const TodoSchema = new Schema({
         type: Boolean,
         default: false
     },
+    isCompleted:{
+        type: Boolean,
+        default: false
+    },
     user:{
         type: Schema.Types.ObjectId,
         ref: "user",

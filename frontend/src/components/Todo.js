@@ -11,6 +11,8 @@ import bin from "../assets/icons/delete.png"
 import edit from "../assets/icons/edit.png"
 import star from "../assets/icons/star.png"
 import starFill from "../assets/icons/star-fill.png"
+import check from "../assets/icons/red-check.png"
+import checked from "../assets/icons/check.png"
 
 //components
 import TodoModal from "./TodoModal"
@@ -70,7 +72,29 @@ const Todo = ({todo, makeRequest, setMakeRequest}) => {
             await axios.put(`/todo/${user.$id}/${_id}`, {isImportant})
             setMakeRequest(!makeRequest)
         } catch(error){
-            console.log("Error while deleting a todo in handleDelete method")
+            console.log("Error while updating a todo in handleHightlight method")
+            console.log("Error: ", error)
+        }
+    }
+
+    
+    /**
+     * @param todo - stores todo object which has to update its isImportant field
+     * handleCompleted() - Prevent default behaviour of form submission (reloading).
+     *                   - Destructure id and isCompleted field from todo
+     *                   - Inverse the value of isCompleted
+     *                   - Make PUT request to database to update todo value.
+     *                   - Updates makeRequest state
+     */
+    const handleCompleted = async (event, todo) => {
+        try{
+            event.preventDefault()
+            let {_id, isCompleted} = todo
+            isCompleted = !isCompleted
+            await axios.put(`/todo/${user.$id}/${_id}`, {isCompleted})
+            setMakeRequest(!makeRequest)
+        } catch(error){
+            console.log("Error while updating a todo in handleCompleted method")
             console.log("Error: ", error)
         }
     }
@@ -84,11 +108,25 @@ const Todo = ({todo, makeRequest, setMakeRequest}) => {
                     border-2 
                     border-violet-800 
                     rounded 
-                    active:bg-violet-100 mx-3
+                    active:bg-violet-100 
+                    mx-3
                 "
                 onClick={(e)=>handleHightlight(e, todo)}
                 >
                     <img src={(todo.isImportant)?starFill:star} alt="Star Todo"/>
+                </button>
+                <button 
+                className="
+                    p-2
+                    border-2 
+                    border-violet-800 
+                    rounded 
+                    active:bg-violet-100
+                    mr-2
+                "
+                onClick={(e)=>handleCompleted(e, todo)}
+                >
+                    <img src={(todo.isCompleted)?checked:check} alt="Star Todo"/>
                 </button>
                 <p className="
                     w-5/6 
