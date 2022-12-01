@@ -152,11 +152,11 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
                         }}
                         className="border-violet-500 rounded text-violet-800 font-semibold"
                         >
-                            <option value="isImportant">Priority</option>
-                            <option value="isCompleted">Completed</option>
-                            <option value="createdAt">Created Date</option>
-                            <option value="updatedAt">Updated Date</option>
-                            <option value="title">Alphabetical</option>
+                            <option value="isImportant" className="font-medium px-2">Priority</option>
+                            <option value="isCompleted" className="font-medium px-2">Completed</option>
+                            <option value="createdAt" className="font-medium px-2">Created Date</option>
+                            <option value="updatedAt" className="font-medium px-2">Updated Date</option>
+                            <option value="title" className="font-medium px-2">Alphabetical</option>
                         </select>
                     </label>
                 </div>

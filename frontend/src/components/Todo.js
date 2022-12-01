@@ -99,39 +99,43 @@ const Todo = ({todo, makeRequest, setMakeRequest}) => {
         }
     }
 
+    let green = "green";
+    let red = "red"
+
     return(
         <>
             <div className="flex my-2 justify-center">
                 <button 
-                className="
+                className={`
                     p-2
                     border-2 
-                    border-violet-800 
+                    border-violet-800
                     rounded 
                     active:bg-violet-100 
                     mx-3
-                "
+                `}
                 onClick={(e)=>handleHightlight(e, todo)}
                 >
                     <img src={(todo.isImportant)?starFill:star} alt="Star Todo"/>
                 </button>
                 <button 
-                className="
+                className={`
                     p-2
                     border-2 
-                    border-violet-800 
+                    border-${(todo.isCompleted)?"green":"red"}-500 
+                    hover:bg-${(todo.isCompleted)?"green":"red"}-100
                     rounded 
                     active:bg-violet-100
                     mr-2
-                "
+                `}
                 onClick={(e)=>handleCompleted(e, todo)}
                 >
                     <img src={(todo.isCompleted)?checked:check} alt="Star Todo"/>
                 </button>
-                <p className="
+                <p className={`
                     w-5/6 
                     border-2 
-                    hover:border-violet-400 
+                    hover:border-${(todo.isCompleted)?"green":"violet"}-400 
                     p-1
                     md:p-2 
                     rounded
@@ -139,12 +143,12 @@ const Todo = ({todo, makeRequest, setMakeRequest}) => {
                     sm:text-[16px]
                     md:text-lg 
                     lg:text-xl 
-                    bg-gray-100 
-                    hover:bg-violet-200 
-                    text-violet-800 
+                    bg-${(todo.isCompleted)?"green":"gray"}-100
+                    hover:bg-${(todo.isCompleted)?"green":"gray"}-200
+                    text-${(todo.isCompleted)?"green":"violet"}-800
                     font-medium
                     break-all
-                "
+                `}
                 onClick={()=>setPopup(!popup)}
                 >
                     {todo.title}</p>
