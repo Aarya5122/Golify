@@ -18,7 +18,7 @@ import TodoButton from "./TodoButton"
  * @param  setMakeRequest - To make DB call and populate todos in todoList once form is submitted.
  * @returns - Form element - Which can be used to update or create a todo.
  */
-const TodoForm = ({task, buttonName, todo="", makeRequest, setMakeRequest}) => {
+const TodoForm = ({task, buttonName, todo="", makeRequest, setMakeRequest, setEditTodo}) => {
 
     /**
      * It is used to pass appwrite Id in DB request parmas
@@ -47,6 +47,8 @@ const TodoForm = ({task, buttonName, todo="", makeRequest, setMakeRequest}) => {
                 await axios.post(`/todo/create`, {title, tasks, isImportant, userId:user.$id})
             } else {
                 await axios.put(`/todo/${user.$id}/${todo._id}`, {title, tasks, isImportant})
+                setEditTodo(false)
+                document.body.style.overflow = "auto"
             }
         } catch(error){
             if(task === "create"){

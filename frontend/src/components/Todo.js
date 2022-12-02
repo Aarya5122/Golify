@@ -17,6 +17,7 @@ import checked from "../assets/icons/check.png"
 //components
 import TodoModal from "./TodoModal"
 import EditTodo from "./EditTodo"
+import DeleteModal from "./DeleteModal"
 
 /**
  * @param todo - Todo Object to populate values.
@@ -40,21 +41,9 @@ const Todo = ({todo, makeRequest, setMakeRequest}) => {
     const [editTodo, setEditTodo] = useState(false);
 
     /**
-     * @param todoId - ._id value of a todo .
-     * handleDelete() - Asynchronous Function (Server Request).
-     *                - Deletes user's todo stored in database based on id value of todo.
-     *                - Updates makeRequest state
+     * Used to display EditForm Modal when todo edit button is clicked
      */
-    const handleDelete = async (event, todoId) => {
-        try{
-            event.preventDefault()
-            await axios.delete(`/todo/${user.$id}/${todoId}`)
-            setMakeRequest(!makeRequest)
-        } catch(error){
-            console.log("Error while deleting a todo in handleDelete method")
-            console.log("Error: ", error)
-        }
-    }
+    const [deleteTodo, setDeleteTodo] = useState(false);
 
     /**
      * @param todo - stores todo object which has to update its isImportant field
@@ -99,9 +88,6 @@ const Todo = ({todo, makeRequest, setMakeRequest}) => {
         }
     }
 
-    let green = "green";
-    let red = "red"
-
     return(
         <>
             <div className="flex my-2 justify-center">
@@ -118,6 +104,26 @@ const Todo = ({todo, makeRequest, setMakeRequest}) => {
                 >
                     <img src={(todo.isImportant)?starFill:star} alt="Star Todo"/>
                 </button>
+                <p className={`
+                    w-5/6 
+                    border-2 
+                    p-1
+                    md:p-2 
+                    rounded
+                    text-[14px]
+                    sm:text-[16px]
+                    md:text-lg 
+                    lg:text-xl 
+                    font-medium
+                    break-all
+                    bg-${(todo.isCompleted)?"green":"gray"}-100
+                    hover:bg-${(todo.isCompleted)?"green":"gray"}-200
+                    hover:border-${(todo.isCompleted)?"green":"violet"}-500
+                    text-${(todo.isCompleted)?"green-600":"violet-800"}
+                `}
+                onClick={()=>setPopup(!popup)}
+                >
+                    {todo.title}</p>
                 <button 
                 className={`
                     p-2
@@ -126,38 +132,18 @@ const Todo = ({todo, makeRequest, setMakeRequest}) => {
                     hover:bg-${(todo.isCompleted)?"green":"red"}-100
                     rounded 
                     active:bg-violet-100
-                    mr-2
+                    ml-3
                 `}
                 onClick={(e)=>handleCompleted(e, todo)}
                 >
                     <img src={(todo.isCompleted)?checked:check} alt="Star Todo"/>
                 </button>
-                <p className={`
-                    w-5/6 
-                    border-2 
-                    hover:border-${(todo.isCompleted)?"green":"violet"}-400 
-                    p-1
-                    md:p-2 
-                    rounded
-                    text-[14px]
-                    sm:text-[16px]
-                    md:text-lg 
-                    lg:text-xl 
-                    bg-${(todo.isCompleted)?"green":"gray"}-100
-                    hover:bg-${(todo.isCompleted)?"green":"gray"}-200
-                    text-${(todo.isCompleted)?"green":"violet"}-800
-                    font-medium
-                    break-all
-                `}
-                onClick={()=>setPopup(!popup)}
-                >
-                    {todo.title}</p>
                 <button 
-                className="p-2 border-2 border-blue-700 rounded active:bg-blue-200 mx-3"
+                className="p-2 border-2 border-blue-700 rounded active:bg-blue-200 mx-2"
                 onClick={()=>{
                     window.scrollTo({
                         top: 0,
-                        behavior: 'smooth',
+                        behavior: 'auto',
                     })
                     document.body.style.overflow = "hidden"
                     setEditTodo(true)
@@ -167,7 +153,14 @@ const Todo = ({todo, makeRequest, setMakeRequest}) => {
                 </button>
                 <button 
                 className="p-2 border-2 border-red-500 rounded active:bg-red-200"
-                onClick={(event)=>handleDelete(event, todo._id)}
+                onClick={()=>{
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'auto',
+                    })
+                    document.body.style.overflow = "hidden"
+                    setDeleteTodo(true)
+                }}
                 >
                     <img src={bin} alt="Delete Todo" className="w-6" />
                 </button>
@@ -177,6 +170,7 @@ const Todo = ({todo, makeRequest, setMakeRequest}) => {
 
             <EditTodo editTodo={editTodo} setEditTodo={setEditTodo} todo={todo} makeRequest={makeRequest} setMakeRequest={setMakeRequest}/>
             
+            <DeleteModal deleteTodo={deleteTodo} setDeleteTodo={setDeleteTodo} todo={todo} setMakeRequest={setMakeRequest} makeRequest={makeRequest}/>
         </>
     )
 }

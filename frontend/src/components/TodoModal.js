@@ -93,10 +93,4 @@ const TodoModal = ({popup, todoId, makeRequest, created, updated}) => {
     )
 }
 
-/**
- * 
- * <p>Created: {new Date(created).toUTCString()}</p>
-                <p>Updated: {new Date(updated).toISO()}</p>
- */
-
 export default TodoModal
