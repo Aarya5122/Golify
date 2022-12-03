@@ -119,6 +119,7 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
             <div 
             className="
                 flex 
+                flex-wrap
                 items-center 
                 justify-between 
                 my-4 
@@ -129,7 +130,7 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
                 {
                     (closeSearch)?
                     <button
-                    className="border border-red-700 rounded p-2 ml-3 md:p-3"
+                    className="border border-red-700 rounded p-2 ml-6 sm:ml-3 md:p-3 my-4 lg:my-0"
                     type="button"
                     onClick={(e)=>{
                         setCloseSearch(false)
@@ -142,21 +143,21 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
                     :
                     <div></div>
                 }
-                <div>
+                <div className="order-2 ml-6 sm:ml-2 my-4 lg:order-none md:ml-0">
                     <label htmlFor="sort">
-                        <span className="text-lg font-medium text-violet-800">Sort by: </span>
+                        <span className="font-medium text-violet-800">Sort by: </span>
                         <select defaultValue="isImportant" 
                         onChange={(event)=>{
                             handleSort(event.target.value)
 
                         }}
-                        className="border-violet-500 rounded text-violet-800 font-semibold"
+                        className="border-violet-500 rounded text-violet-800 font-semibold py-0.5"
                         >
-                            <option value="isImportant" className="font-medium px-2">Priority</option>
-                            <option value="isCompleted" className="font-medium px-2">Completed</option>
-                            <option value="createdAt" className="font-medium px-2">Created Date</option>
-                            <option value="updatedAt" className="font-medium px-2">Updated Date</option>
-                            <option value="title" className="font-medium px-2">Alphabetical</option>
+                            <option value="isImportant" className="px-2">Priority</option>
+                            <option value="isCompleted" className="px-2">Completed</option>
+                            <option value="createdAt" className="px-2">Created Date</option>
+                            <option value="updatedAt" className="px-2">Updated Date</option>
+                            <option value="title" className="px-2">Alphabetical</option>
                         </select>
                     </label>
                 </div>
@@ -168,9 +169,9 @@ const TodoList = ({makeRequest, setMakeRequest}) => {
                     mx-5
                     sm:mx-2
                     lg:mx-3
-                    md:w-7/12
+                    lg:w-7/12
                     lg:mx-0
-                    lg:w-5/12
+                    xl:w-5/12
                 ">
                     <input 
                     type="text" 
