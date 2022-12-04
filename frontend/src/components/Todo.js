@@ -139,7 +139,7 @@ const Todo = ({todo, makeRequest, setMakeRequest}) => {
                     <img src={(todo.isCompleted)?checked:check} alt="Star Todo"/>
                 </button>
                 <button 
-                className="p-2 border-2 border-blue-700 rounded active:bg-blue-200 mx-2"
+                className="p-2 border-2 border-blue-700 rounded mx-2 hover:bg-blue-200"
                 onClick={()=>{
                     window.scrollTo({
                         top: 0,
