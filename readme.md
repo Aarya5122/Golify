@@ -49,7 +49,7 @@ Do reach out if you have any project idea let's work together and achieve goals.
 
 ## 🎯 Machine requirements to run this project 🎯
 
-- Node JS ( runtime environment )
+- Node JS (runtime environment)
 - Mongo DB Compass
 
 ## 🪜 Steps to run the project in your machine 🪜
